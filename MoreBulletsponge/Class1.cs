@@ -18,12 +18,12 @@ namespace MoreBulletsponge
     public class MoreBulletspongePlugin : BaseUnityPlugin
     {
         public static ConfigEntry<float> levelArmor;
-        public static ConfigEntry<float> championBonusLevelArmor;
+        public static ConfigEntry<float> championLevelArmor;
 
         private void Awake()
         {
             levelArmor = base.Config.Bind<float>("Stats", "Armor Per Level", 2f);
-            championBonusLevelArmor = base.Config.Bind<float>("Stats", "Boss Armor Per Level", 3f);
+            championLevelArmor = base.Config.Bind<float>("Stats", "Boss Armor Per Level", 3f);
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
@@ -33,7 +33,7 @@ namespace MoreBulletsponge
             {
                 if (sender.isChampion)
                 {
-                    args.levelArmorAdd += championBonusLevelArmor.Value;
+                    args.levelArmorAdd += championLevelArmor.Value;
                 }
                 else
                 {
